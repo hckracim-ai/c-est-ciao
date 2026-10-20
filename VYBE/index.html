@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vybe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== Connexion / Inscription ===== -->
+<section id="auth">
+  <div class="card">
+    <h1 class="logo">Vybe</h1>
+    <p class="muted">Discute, appelle et partage avec tes amis.</p>
+    <div class="tabs">
+      <button type="button" data-mode="login" class="active">Connexion</button>
+      <button type="button" data-mode="signup">Inscription</button>
+    </div>
+    <form id="auth-form">
+      <input id="a-username" placeholder="Nom d'utilisateur (a-z, 0-9, _ .)" autocomplete="username" pattern="[a-zA-Z0-9_.]{3,20}" hidden>
+      <input id="a-email" type="email" required placeholder="Email" autocomplete="email">
+      <input id="a-pass" type="password" required minlength="6" placeholder="Mot de passe" autocomplete="current-password">
+      <button class="btn primary" id="a-submit">Se connecter</button>
+    </form>
+    <div class="sep"><span>ou</span></div>
+    <button class="btn" id="btn-google">Continuer avec Google</button>
+    <button class="btn" id="btn-apple">Continuer avec Apple</button>
+  </div>
+</section>
+
+<!-- ===== Application ===== -->
+<div id="app" hidden>
+  <nav class="rail">
+    <div class="rail-item active">
+      <button class="rail-btn home" id="rail-home" title="Accueil">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l8 13 8-13"/></svg>
+        <span class="rail-badge" id="req-badge" hidden></span>
+      </button>
+    </div>
+    <div class="rail-sep"></div>
+    <div id="rail-groups"></div>
+    <div class="rail-item">
+      <button class="rail-btn add" id="btn-new-group" title="Créer un groupe">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+  </nav>
+  <aside class="side">
+    <div class="side-head" id="side-head"></div>
+    <div class="side-body" id="side-body"></div>
+    <div class="me" id="me-panel"></div>
+  </aside>
+  <button class="icon-btn" id="btn-menu" title="Menu"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <main id="view"></main>
+  <aside id="members" hidden></aside>
+</div>
+
+<div id="modal" class="modal" hidden><div class="modal-card" id="modal-card"></div></div>
+<div id="incoming" hidden></div>
+
+<div id="call" hidden>
+  <video id="remote-video" autoplay playsinline></video>
+  <video id="local-video" autoplay playsinline muted></video>
+  <div id="call-status">Appel…</div>
+  <div class="call-actions">
+    <button id="c-mute" class="round" title="Micro">🎤</button>
+    <button id="c-cam" class="round" title="Caméra">📷</button>
+    <button id="c-hang" class="round danger" title="Raccrocher">📞</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>
